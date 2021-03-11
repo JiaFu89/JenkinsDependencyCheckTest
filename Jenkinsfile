@@ -1,15 +1,23 @@
-pipeline {
+pipeline { 
+	
 	agent any
+	
 	stages {
-		stage('Checkout SCM') {
+		stage("build") {
 			steps {
-				git '/home/JenkinsDependencyCheckTest'
+				echo 'building the application'
 			}
 		}
 
-		stage('OWASP DependencyCheck') {
+		stage("test") {
 			steps {
-				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
+				echo 'testing the application...'
+			}
+		}
+		
+		stage("deploy") {
+			steps {
+				echo 'deploying the application'
 			}
 		}
 	}	
